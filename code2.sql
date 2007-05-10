@@ -18,10 +18,11 @@ CREATE TABLE ANIMAL (
       lugar_nacimiento    varchar(32),
       tipo                varchar(8),
       n_crotal_padre      varchar(32),
-      PRIMARY KEY (n_crotal)      
+      PRIMARY KEY (n_crotal),
+      FOREIGN KEY (n_crotal_padre) REFERENCES SEMENTAL (n_crotal)
 );
 
-ALTER TABLE ANIMAL ADD FOREIGN KEY (n_crotal_padre) REFERENCES SEMENTAL (n_crotal);
+
 
 CREATE TABLE pertenece (
       n_crotal            varchar(32),

@@ -109,7 +109,7 @@ INSERT INTO PROVEEDOR (codP,Nombre,Telefono,direccion)
        VALUES ('357590','Livestock Improvement Corporation','+64 7 856 0700 ','Hamilton 2021 Nueva Zelanda');
 
 INSERT INTO PROVEEDOR (codP,Nombre,Telefono,direccion)
-       VALUES ('446681','Agricultural & Fishery Marketing Corporation','+82 2 6300 1404','aT Center 232,
+       VALUES ('446681','Agricultural & Fishery Marketing Co','+82 2 6300 1404','aT Center 232,
                Yangjae-Dong Seocho-gu,Seoul 137-130, Corea del Sur');
 
 INSERT INTO PROVEEDOR (codP,Nombre,Telefono,direccion)
@@ -148,22 +148,22 @@ INSERT INTO EXTRACCION (codEx,Fecha,Incidencias,n_colegiado,n_crotal)
 ---------------------------------------------------------------------------------
 
 INSERT INTO UNIDAD_SEMEN (Lote, fecha_obtencion, calidad, fecha_validez, codEx)
-            VALUES ('ab12345',1984-11-07,'muy buena','2010-09-02','x56789');
+            VALUES ('ab12345','1984-11-07','muy buena','2010-09-02','x56789');
 INSERT INTO UNIDAD_SEMEN (Lote, fecha_obtencion, calidad, fecha_validez, codEx)
-            VALUES ('ab12346',1990-06-07,'buena','2020-10-24','x56789');
+            VALUES ('ab12346','1990-06-07','buena','2020-10-24','x56789');
 INSERT INTO UNIDAD_SEMEN (Lote, fecha_obtencion, calidad, fecha_validez, codEx)
-            VALUES ('ab12347',1996-11-15,'regular','2010-09-02','x56790');
+            VALUES ('ab12347','1996-11-15','regular','2010-09-02','x56790');
 INSERT INTO UNIDAD_SEMEN (Lote, fecha_obtencion, calidad, fecha_validez, codEx)
-            VALUES ('ab12348',1996-06-20,'regular','2010-09-02','x56790');
+            VALUES ('ab12348','1996-06-20','regular','2010-09-02','x56790');
 INSERT INTO UNIDAD_SEMEN (Lote, fecha_obtencion, calidad, fecha_validez, codEx)
-            VALUES ('ab12349',1995-03-16,'regular','2018-12-31','x56791');
+            VALUES ('ab12349','1995-03-16','regular','2018-12-31','x56791');
 --50
 --------------------------------------------------------------------------------------
 ----------------------TABLA CARACTERISTICAS CRIA -------------------------------------
 -------------------------------------------------------------------------------------
 
 INSERT INTO CARACTERISTICAS_CRIA (Cod, Nombre, Descripcion)
-            VALUES ('0000001','grupa_alta','parte poaterior del animal, forma angulo 45');
+            VALUES ('0000001','grupa','parte posterior del animal, forma angulo 45');
 INSERT INTO CARACTERISTICAS_CRIA (Cod, Nombre, Descripcion)
             VALUES ('0000002','tamaño','alta');
 INSERT INTO CARACTERISTICAS_CRIA (Cod, Nombre, Descripcion)
@@ -171,7 +171,7 @@ INSERT INTO CARACTERISTICAS_CRIA (Cod, Nombre, Descripcion)
 INSERT INTO CARACTERISTICAS_CRIA (Cod, Nombre, Descripcion)
             VALUES ('0000004','cabeza','achatada');
 INSERT INTO CARACTERISTICAS_CRIA (Cod, Nombre, Descripcion)
-            VALUES ('0000001','grupa','alta');
+            VALUES ('0000005','grupa a','alta');
 --55
 
 
