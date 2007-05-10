@@ -1,0 +1,1 @@
+drop database explotacion1; \W source f:/bbdd/repositorio/code2.sql; \W source f:/bbdd/repositorio/CONSULTAS.sql;

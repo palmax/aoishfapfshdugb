@@ -2,7 +2,7 @@
 ALTER TABLE ANIMAL ADD Nombre VARCHAR(16);
 /* 2 */
 INSERT INTO RAZA (Cod,Nombre,Caracteristicas,Descripcion) VALUES ('1','Holstein Freisian','resistente','blanco y negro o blanco y rojo, con las manchas bien definidas.');
-INSERT INTO RAZA (Cod,Nombre,Caracteristicas,Descripcion) VALUES ('2','Jersey','producción de leche con alto contenido de grasa (5%).','peso que varía entre 370 y 500 kilogramos.');
+INSERT INTO RAZA (Cod,Nombre,Caracteristicas,Descripcion) VALUES ('2','Jersey','produccion de leche con alto contenido de grasa (5%).','peso que varia entre 370 y 500 kilogramos.');
 INSERT INTO RAZA (Cod,Nombre,Caracteristicas,Descripcion) VALUES 
                  ('3','Charolaise','Piel y mucosas rosadas,pelo corto de color blanco o crema','Origen centro de francia, al campo toman un tinte blanco pajizo');
 INSERT INTO RAZA (Cod,Nombre,Caracteristicas,Descripcion) VALUES
@@ -46,9 +46,9 @@ INSERT INTO ANIMAL (n_crotal,nombre,sexo,fecha_nacimiento,lugar_nacimiento,tipo,
 INSERT INTO ANIMAL (n_crotal,nombre,sexo,fecha_nacimiento,lugar_nacimiento,tipo,n_crotal_padre)
     VALUES ('0007','Camila','hembra','2001-04-21','Miraflores,Madid,España','Lechera','0003');
 INSERT INTO ANIMAL (n_crotal,nombre,sexo,fecha_nacimiento,lugar_nacimiento,tipo,n_crotal_padre)
-    VALUES ('0008','Sra.Caloway','hembra','2004-01-22','Londres,Inglaterra','Lechera','0009');
+    VALUES ('0008','Caloway','hembra','2004-01-22','Londres,Inglaterra','Lechera','0009');
 INSERT INTO ANIMAL (n_crotal,nombre,sexo,fecha_nacimiento,lugar_nacimiento,tipo,n_crotal_padre)
-    VALUES ('0010','Margarita','hembra','2005-01-22','Leon,C.Leon,España','Lechera','0003');
+    VALUES ('0010','Marga','hembra','2005-01-22','Leon,C.Leon,España','Lechera','0003');
 --20
 ----------------------------------------------------------------------------------------------
 -----------------------------------TABLA VACA-------------------------------------------------
@@ -85,15 +85,15 @@ INSERT INTO SEMENTAL (n_crotal,calidad_semen,largo,alto)
 ----------------------------------------------------------------------------------------------
 
 INSERT INTO VETERINARIO (n_colegiado,Nombre,telefono,movil,direccion)
-       VALUES ('100132','Elena Nito del Bosque','91-4298472','+34-698337257','C/ Toro 12 2 D,Madrid,España');
+       VALUES ('100132','Elena','91-4298472','+34-698337257','C/ Toro 12 2 D,Madrid,Espany');
 INSERT INTO VETERINARIO (n_colegiado,Nombre,telefono,movil,direccion)
-       VALUES ('170132','Andres Tresado','92-1298472','+34-626873214','C/ Cuerno');
+       VALUES ('170132','Andres','92-1298472','+34-626873214','C/ Cuerno');
 INSERT INTO VETERINARIO (n_colegiado,Nombre,telefono,movil,direccion)
-       VALUES ('500132','Umberto Cesar','92-39743894','+34-666112233','Pso Prado 45');
+       VALUES ('500132','Cesar','92-39743894','+34-666112233','Pso Prado 45');
 INSERT INTO VETERINARIO (n_colegiado,Nombre,telefono,movil,direccion)
-       VALUES ('800121','Nicasio Rodrigo','91-8294472','+34-628345219','C/Trote');
+       VALUES ('800121','Rodrigo','91-8294472','+34-628345219','C/Trote');
 INSERT INTO VETERINARIO (n_colegiado,Nombre,telefono,movil,direccion)
-       VALUES ('170131','Roberto Antonio','97-7278912','+34-612783314','C/Luciernaga');
+       VALUES ('170131','Roberto','97-7278912','+34-612783314','C/Luciernaga');
 
 
 
@@ -163,15 +163,15 @@ INSERT INTO UNIDAD_SEMEN (Lote, fecha_obtencion, calidad, fecha_validez, codEx)
 -------------------------------------------------------------------------------------
 
 INSERT INTO CARACTERISTICAS_CRIA (Cod, Nombre, Descripcion)
-            VALUES ('0000001','grupa','parte posterior del animal, forma angulo 45');
+            VALUES ('0000001','grupa','parte posterior del animal');
 INSERT INTO CARACTERISTICAS_CRIA (Cod, Nombre, Descripcion)
-            VALUES ('0000002','tama�o','alta');
+            VALUES ('0000002','tamanyo','alta');
 INSERT INTO CARACTERISTICAS_CRIA (Cod, Nombre, Descripcion)
             VALUES ('0000003','cintura','ancha');
 INSERT INTO CARACTERISTICAS_CRIA (Cod, Nombre, Descripcion)
             VALUES ('0000004','cabeza','achatada');
 INSERT INTO CARACTERISTICAS_CRIA (Cod, Nombre, Descripcion)
-            VALUES ('0000005','grupa a','alta');
+            VALUES ('0000005','grupa_alta','alta');
 --55
 
 
