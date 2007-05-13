@@ -135,10 +135,10 @@ CREATE TABLE EXTRACCION (
       n_crotal    varchar(32),
       PRIMARY KEY (codEx),
       FOREIGN KEY (n_colegiado) REFERENCES VETERINARIO (n_colegiado)
-         ON DELETE SET NULL -- Mejor tener algo que no tener nada
+         ON DELETE SET NULL -- Mejor tener algo que no tener nada <- Manu RESTR
          ON UPDATE CASCADE, -- Si cambio el numero de colegiado => cambiar aki
       FOREIGN KEY (n_crotal) REFERENCES SEMENTAL (n_crotal)
-         ON DELETE SET NULL -- Mejor tener algo que no tener nada
+         ON DELETE SET NULL -- Mejor tener algo que no tener nada <- Manu CASC
          ON UPDATE CASCADE -- Si cambio el codigo del proveedor => cambiar aki
 );
 
@@ -178,10 +178,10 @@ CREATE TABLE suministra (
       coste int,
       PRIMARY KEY (codP,Lote),
       FOREIGN KEY (codP) REFERENCES PROVEEDOR (codP)
-         --  ON DELETE SET NULL -- PK NO PUEDE SER NULO!
+         --  ON DELETE SET NULL -- PK NO PUEDE SER NULO! <- Manu CASCADE
          ON UPDATE CASCADE, -- Si cambio el codigo del proveedor => cambiar aki
       FOREIGN KEY (Lote) REFERENCES UNIDAD_SEMEN (Lote)
-         --  ON DELETE SET NULL -- PK NO PUEDE SER NULO!
+         --  ON DELETE SET NULL -- PK NO PUEDE SER NULO! <- Manu CASCADE
          ON UPDATE CASCADE -- Si cambio el codigo del proveedor => cambiar aki
 );
 /* Hace falta el trigger para que cuando se a a insertar uno compruebe que ya
@@ -191,11 +191,9 @@ DELIMITER |
 
 CREATE TRIGGER insert_suministra AFTER INSERT ON suministra
   FOR EACH ROW BEGIN
-    IF EXIST(SELECT (codP == NEW.codP)
-              from suministra;)
+    IF EXISTS (SELECT * FROM suminitra
+               WHERE codP = New.codP);
 	drop; -- desestimar la peticion para que no haya replicas
-    ELSE
-        null; -- se puede
     END IF
   END
 |
