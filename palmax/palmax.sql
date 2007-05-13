@@ -116,6 +116,7 @@ CREATE TABLE VETERINARIO (
       direccion   varchar(255),
       PRIMARY KEY (n_colegiado)
 );
+-- Tiene logica poner algun atributo a nulo ya que quizas no lo sepamos aun
 
 
 CREATE TABLE PROVEEDOR (
@@ -135,7 +136,7 @@ CREATE TABLE EXTRACCION (
       PRIMARY KEY (codEx),
       FOREIGN KEY (n_colegiado) REFERENCES VETERINARIO (n_colegiado)
          ON DELETE SET NULL -- Mejor tener algo que no tener nada
-         ON UPDATE CASCADE, -- Si cambio el codigo del proveedor => cambiar aki
+         ON UPDATE CASCADE, -- Si cambio el numero de colegiado => cambiar aki
       FOREIGN KEY (n_crotal) REFERENCES SEMENTAL (n_crotal)
          ON DELETE SET NULL -- Mejor tener algo que no tener nada
          ON UPDATE CASCADE -- Si cambio el codigo del proveedor => cambiar aki
@@ -152,6 +153,23 @@ CREATE TABLE UNIDAD_SEMEN (
          ON DELETE SET NULL -- Mejor tener algo que no tener nada
          ON UPDATE CASCADE -- Si cambio el codigo del proveedor => cambiar aki
 );
+/*
+DELIMITER |
+
+CREATE TRIGGER insert_unidad_semen AFTER INSERT ON unidad_semen
+  FOR EACH ROW BEGIN
+    IF ((NEW.fecha_validez != NULL) AND  -- kizas no sepamos la fecha_validez
+        (NEW.fecha_obtencion > NEW.fecha_validez))
+      drop; -- desestimar la peticion si la fecha de obtencion es despues
+    ELSE IF EXIST(SELECT (codEx == NEW.codEx)
+              from EXTRACCION;)
+      drop; -- desestimar si ya existe una unidad de semen para una extraccion
+    ENDIF            
+  END
+|
+
+DELIMITER ;
+*/
 
 
 CREATE TABLE suministra (
@@ -160,10 +178,40 @@ CREATE TABLE suministra (
       coste int,
       PRIMARY KEY (codP,Lote),
       FOREIGN KEY (codP) REFERENCES PROVEEDOR (codP)
-         ON DELETE SET NULL -- Mejor tener algo que no tener nada
+         --  ON DELETE SET NULL -- PK NO PUEDE SER NULO!
          ON UPDATE CASCADE, -- Si cambio el codigo del proveedor => cambiar aki
       FOREIGN KEY (Lote) REFERENCES UNIDAD_SEMEN (Lote)
+         --  ON DELETE SET NULL -- PK NO PUEDE SER NULO!
+         ON UPDATE CASCADE -- Si cambio el codigo del proveedor => cambiar aki
 );
+/* Hace falta el trigger para que cuando se a a insertar uno compruebe que ya
+   no existe otro proveedor con el mismo codP en la tabla suministra */
+/*
+DELIMITER |
+
+CREATE TRIGGER insert_suministra AFTER INSERT ON suministra
+  FOR EACH ROW BEGIN
+    IF EXIST(SELECT (codP == NEW.codP)
+              from suministra;)
+	drop; -- desestimar la peticion para que no haya replicas
+    ELSE
+        null; -- se puede
+    END IF
+  END
+|
+
+
+CREATE TRIGGER insert_unidad_semen AFTER INSERT ON unidad_semen
+  FOR EACH ROW BEGIN
+    IF ((NEW.fecha_validez != NULL) AND  -- kizas no sepamos la fecha_validez
+        (NEW.fecha_obtencion > NEW.fecha_validez))
+	drop; -- desestimar la peticion si la fecha de obtencion es despues
+    ENDIF            
+  END
+|
+
+DELIMITER ;
+*/
 
 CREATE TABLE insemina (
       n_colegiado varchar(32),
@@ -177,5 +225,3 @@ CREATE TABLE insemina (
 );
 
 /* Las restricciones son complejas, se realizaran mas tarde */
-
-
