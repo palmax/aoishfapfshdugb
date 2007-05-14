@@ -147,7 +147,8 @@ CREATE TABLE UNIDAD_SEMEN (
       fecha_obtencion date,
       calidad         varchar(16),
       fecha_validez   date,
-      codEx       varchar(16),
+      codEx           varchar(16),
+         UNIQUE(codEx),
       PRIMARY KEY (Lote),
       FOREIGN KEY (codEx) REFERENCES EXTRACCION (codEx)
          ON DELETE SET NULL -- Mejor tener algo que no tener nada
@@ -159,12 +160,9 @@ DELIMITER |
 CREATE TRIGGER insert_unidad_semen AFTER INSERT ON unidad_semen
   FOR EACH ROW BEGIN
     IF ((NEW.fecha_validez != NULL) AND  -- kizas no sepamos la fecha_validez
-        (NEW.fecha_obtencion > NEW.fecha_validez))
+        (NEW.fecha_obtencion > NEW.fecha_validez)) then
       drop; -- desestimar la peticion si la fecha de obtencion es despues
-    ELSE IF EXIST(SELECT (codEx == NEW.codEx)
-              from EXTRACCION;)
-      drop; -- desestimar si ya existe una unidad de semen para una extraccion
-    ENDIF            
+    END IF
   END
 |
 
@@ -186,30 +184,6 @@ CREATE TABLE suministra (
 );
 /* Hace falta el trigger para que cuando se a a insertar uno compruebe que ya
    no existe otro proveedor con el mismo codP en la tabla suministra */
-/*
-DELIMITER |
-
-CREATE TRIGGER insert_suministra AFTER INSERT ON suministra
-  FOR EACH ROW BEGIN
-    IF EXISTS (SELECT * FROM suminitra
-               WHERE codP = New.codP);
-	drop; -- desestimar la peticion para que no haya replicas
-    END IF
-  END
-|
-
-
-CREATE TRIGGER insert_unidad_semen AFTER INSERT ON unidad_semen
-  FOR EACH ROW BEGIN
-    IF ((NEW.fecha_validez != NULL) AND  -- kizas no sepamos la fecha_validez
-        (NEW.fecha_obtencion > NEW.fecha_validez))
-	drop; -- desestimar la peticion si la fecha de obtencion es despues
-    ENDIF            
-  END
-|
-
-DELIMITER ;
-*/
 
 CREATE TABLE insemina (
       n_colegiado varchar(32),
@@ -221,5 +195,4 @@ CREATE TABLE insemina (
       FOREIGN KEY (n_crotal) REFERENCES VACA (n_crotal),
       FOREIGN KEY (Lote) REFERENCES UNIDAD_SEMEN (Lote)
 );
-
 /* Las restricciones son complejas, se realizaran mas tarde */
