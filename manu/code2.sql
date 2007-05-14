@@ -21,7 +21,7 @@ CREATE TABLE ANIMAL (
       tipo                varchar(8),
       n_crotal_padre      varchar(32),
       PRIMARY KEY (n_crotal),
-     CHECK (sexo ='macho' OR sexo='hembra')
+      CHECK (sexo ='macho' OR sexo='hembra')
 );
 
 
@@ -38,11 +38,11 @@ CREATE TABLE pertenece (
         ON UPDATE  CASCADE
 
 );
---ALTER TABLE pertenece ADD CONSTRAINT
---      CHECK (NOT EXISTS
---            (SELECT * FROM ANIMAL
---             WHERE n_crotal NOT IN (SELECT n_crotal FROM pertenece)
---          ));
+ALTER TABLE pertenece ADD CONSTRAINT
+      CHECK (NOT EXISTS
+            (SELECT * FROM ANIMAL
+             WHERE n_crotal NOT IN (SELECT n_crotal FROM pertenece)
+          ));
 
 CREATE TABLE se_transforma (
       n_crotal_antiguo varchar(32),
@@ -141,12 +141,12 @@ CREATE TABLE posee (
 	ON DELETE  RESTRICT /*Ablandar tb*/
         ON UPDATE  CASCADE
 );
---ALTER TABLE posee ADD CONSTRAINT
--- CHECK (NOT EXISTS
---              (SELECT * FROM SEMENTAL
---             WHERE n_crotal NOT IN (SELECT n_crotal FROM posee)
---          ))
---;
+ALTER TABLE posee ADD CONSTRAINT
+ CHECK (NOT EXISTS
+              (SELECT * FROM SEMENTAL
+             WHERE n_crotal NOT IN (SELECT n_crotal FROM posee)
+          ))
+;
 /* Luego haremos sus restricciones */
 
 
@@ -189,7 +189,8 @@ CREATE TABLE UNIDAD_SEMEN (
       fecha_obtencion date,
       calidad         varchar(16),
       fecha_validez   date,
-      codEx       varchar(16),
+      codEx           varchar(16)
+       CHECK ((fecha_validez = NULL) OR (fecha_validez >= fecha_obtencion)),
       PRIMARY KEY (Lote),
       FOREIGN KEY (codEx) REFERENCES EXTRACCION (codEx)
        ON DELETE  SET NULL
