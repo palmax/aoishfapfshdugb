@@ -321,16 +321,22 @@ INSERT INTO se_transforma(n_crotal_antiguo,n_crotal_nuevo,Fecha,Motivo)
                (posteriormente se vendio a Iran,el isotopo digo)');
 ---------------------------------------------------------------------------------------------------
 
-SELECT ANIMAL.nombre,ANIMAL.n_crotal,ANIMAL.tipo,RAZA.Cod,RAZA.Nombre from ANIMAL,pertenece,RAZA
-where (ANIMAL.n_crotal=pertenece.n_crotal and pertenece.cod=RAZA.Cod) IN (
-                        SELECT n_crotal  
-                        FROM insemina
-                       WHERE '2007-05-12'< DATE_ADD(insemina.Fecha,INTERVAL 280 DAY) < '2007-30-09');
-
 -----3-----
 UPDATE VETERINARIO SET movil = '+34-666551734' where n_colegiado='100132';
 -----4-----
 UPDATE ANIMAL SET n_crotal = '300' where n_crotal='0005';
+-----5-----
+SELECT ANIMAL.n_crotal,ANIMAL.nombre,RAZA.Nombre,ANIMAL.tipo
+FROM ANIMAL,pertenece,RAZA
+WHERE (ANIMAL.n_crotal=pertenece.n_crotal and pertenece.cod=RAZA.Cod) IN (
+      SELECT n_crotal
+      FROM insemina,monta
+      WHERE ((CURRENT_DATE<=DATE_SUB(insemina.Fecha,INTERVAL 280 DAY))
+             OR ((monta.EXITO = 'ok') AND 
+             (CURRENT_DATE <= DATE_SUB(monta.Fecha,INTERVAL 280 DAY))));
+
+
+
 
 SELECT count( * ) AS montas, SEMENTAL_n_crotal, ANIMAL.nombre
 FROM  monta, ANIMAL
