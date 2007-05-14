@@ -222,7 +222,7 @@ INSERT INTO monta(VACA_n_crotal,SEMENTAL_n_crotal,Fecha,exito,incidencias)
 INSERT INTO monta(VACA_n_crotal,SEMENTAL_n_crotal,Fecha,exito,incidencias)
        VALUES ('0005','0003','2003-07-21','ok','no');
 INSERT INTO monta(VACA_n_crotal,SEMENTAL_n_crotal,Fecha,exito,incidencias)
-       VALUES ('0010','0003','2001-05-21','ok','no');
+       VALUES ('0010','0003','2007-06-21','ok','no');
 
 -----------------------------------------------------------------
 ---------------------------pertenece-----------------------------
@@ -270,7 +270,7 @@ INSERT INTO insemina(n_colegiado,n_crotal,Lote,Fecha)
 INSERT INTO insemina(n_colegiado,n_crotal,Lote,Fecha)
        VALUES ('100132','0007','ab12347','2005-02-09');
 INSERT INTO insemina(n_colegiado,n_crotal,Lote,Fecha)
-       VALUES ('100132','0008','ab12348','2005-01-02');
+       VALUES ('100132','0008','ab12348','2007-05-05');
 
 -----------------------------------------------------------------
 ---------------------------pare----------------------------------
@@ -333,7 +333,7 @@ WHERE (ANIMAL.n_crotal=pertenece.n_crotal and pertenece.cod=RAZA.Cod) IN (
       FROM insemina,monta
       WHERE ((CURRENT_DATE<=DATE_SUB(insemina.Fecha,INTERVAL 280 DAY))
              OR ((monta.EXITO = 'ok') AND 
-             (CURRENT_DATE <= DATE_SUB(monta.Fecha,INTERVAL 280 DAY))));
+             (CURRENT_DATE <= DATE_SUB(monta.Fecha,INTERVAL 280 DAY)))));
 
 
 
