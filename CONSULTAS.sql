@@ -327,10 +327,17 @@ where (ANIMAL.n_crotal=pertenece.n_crotal and pertenece.cod=RAZA.Cod) IN (
                         FROM insemina
                        WHERE '2007-05-12'< DATE_ADD(insemina.Fecha,INTERVAL 280 DAY) < '2007-30-09');
 
-DELETE FROM SEMENTAL where(SELECT RAZA.Nombre FROM (SELECT RAZA.Nombre FROM ANIMAL,pertenece,RAZA WHERE ANIMAL.n_crotal=pertenece.n_crotal and pertenece.cod=RAZA.Cod)WHERE nombre='Alistana');
-
 -----3-----
 UPDATE VETERINARIO SET movil = '+34-666551734' where n_colegiado='170132';
 -----4-----
 UPDATE ANIMAL SET n_crotal = '300' where n_crotal='0001';
 -----5-----
+
+SELECT count( * ) AS montas, SEMENTAL_n_crotal, ANIMAL.nombre
+FROM  monta, ANIMAL
+WHERE ANIMAL.n_crotal=SEMENTAL_n_crotal
+GROUP BY SEMENTAL_n_crotal
+ORDER BY  montas DESC, ANIMAL.Nombre ASC
+;
+
+
