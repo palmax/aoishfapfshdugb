@@ -148,8 +148,8 @@ CREATE TABLE UNIDAD_SEMEN (
       calidad         varchar(16),
       fecha_validez   date,
       codEx           varchar(16),
-         UNIQUE(codEx),
-      PRIMARY KEY (Lote),
+         UNIQUE(codEx),  -- OJO! CAMBIO ALGO IMPORTANTE!
+      PRIMARY KEY (Lote),  -- CAMBIO ALGO IMPORTANTE
       FOREIGN KEY (codEx) REFERENCES EXTRACCION (codEx)
          ON DELETE SET NULL -- Mejor tener algo que no tener nada
          ON UPDATE CASCADE -- Si cambio el codigo del proveedor => cambiar aki
@@ -171,10 +171,11 @@ DELIMITER ;
 
 
 CREATE TABLE suministra (
-      codP  varchar(32),
+      codP  varchar(32) NOT NULL,
       Lote  varchar(16),
       coste int,
-      PRIMARY KEY (codP,Lote),
+         UNIQUE(codP),
+      PRIMARY KEY (Lote),
       FOREIGN KEY (codP) REFERENCES PROVEEDOR (codP)
          --  ON DELETE SET NULL -- PK NO PUEDE SER NULO! <- Manu CASCADE
          ON UPDATE CASCADE, -- Si cambio el codigo del proveedor => cambiar aki
