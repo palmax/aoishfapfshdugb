@@ -1,6 +1,6 @@
 CREATE DATABASE explotacion;
 
-USE explotacion1;
+USE explotacion;
 
 CREATE TABLE RAZA (
       Cod                 varchar(16),
