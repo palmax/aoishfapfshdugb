@@ -23,7 +23,6 @@ CREATE TABLE ANIMAL (
 );
 
 
-
 CREATE TABLE pertenece (
       n_crotal            varchar(32),
       Cod                 varchar(16),
@@ -36,11 +35,13 @@ CREATE TABLE pertenece (
         ON UPDATE  CASCADE
 
 );
+
 ALTER TABLE pertenece ADD CONSTRAINT
       CHECK (NOT EXISTS
             (SELECT * FROM ANIMAL
              WHERE n_crotal NOT IN (SELECT n_crotal FROM pertenece)
           ));
+
 
 CREATE TABLE se_transforma (
       n_crotal_antiguo varchar(32),
@@ -56,8 +57,6 @@ CREATE TABLE se_transforma (
         ON DELETE  CASCADE
         ON UPDATE  CASCADE
 );
-
-/* Mas tarde haremos sus restricciones */
 
 
 CREATE TABLE VACA (
@@ -127,7 +126,6 @@ CREATE TABLE CARACTERISTICAS_CRIA (
 );
 
 
-
 CREATE TABLE posee (
       Cod       varchar(16),
       n_crotal  varchar(32),
@@ -139,13 +137,13 @@ CREATE TABLE posee (
 	ON DELETE  RESTRICT /*Ablandar tb*/
         ON UPDATE  CASCADE
 );
+
 ALTER TABLE posee ADD CONSTRAINT
  CHECK (NOT EXISTS
               (SELECT * FROM SEMENTAL
              WHERE n_crotal NOT IN (SELECT n_crotal FROM posee)
           ))
 ;
-/* Luego haremos sus restricciones */
 
 
 CREATE TABLE VETERINARIO (
@@ -165,6 +163,7 @@ CREATE TABLE PROVEEDOR (
       direccion varchar(255),
       PRIMARY KEY (codP)
 );
+
 
 CREATE TABLE EXTRACCION (
       codEx       varchar(16),
@@ -225,12 +224,3 @@ CREATE TABLE insemina (
        ON DELETE  CASCADE
        ON UPDATE  CASCADE
 );
-
-/* Las restricciones son complejas, se realizaran mas tarde */
-
-
-
-
-
-
-
