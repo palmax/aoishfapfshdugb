@@ -1,6 +1,4 @@
-drop database explotacion1;
-
-CREATE DATABASE explotacion1;
+CREATE DATABASE explotacion;
 
 USE explotacion1;
 
