@@ -169,8 +169,8 @@ CREATE TABLE EXTRACCION (
       codEx       varchar(16),
       Fecha       date,
       Incidencias varchar(255),
-      n_colegiado varchar(32),
-      n_crotal    varchar(32),
+      n_colegiado varchar(32) NOT NULL,
+      n_crotal    varchar(32) NOT NULL,
       PRIMARY KEY (codEx),
       FOREIGN KEY (n_colegiado) REFERENCES VETERINARIO (n_colegiado)
        ON DELETE  RESTRICT
