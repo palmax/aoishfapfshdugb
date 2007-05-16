@@ -235,6 +235,8 @@ INSERT INTO insemina(n_colegiado,n_crotal,Lote,Fecha)
        VALUES ('100132','0007','ab12347','2005-02-09');
 INSERT INTO insemina(n_colegiado,n_crotal,Lote,Fecha)
        VALUES ('100132','0008','ab12348','2007-05-05');
+INSERT INTO insemina(n_colegiado,n_crotal,Lote,Fecha)
+       VALUES ('100132','0010','ab12345','2006-12-10');
 
 -----------------------------------------------------------------
 ---------------------------pare----------------------------------
