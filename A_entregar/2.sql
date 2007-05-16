@@ -240,15 +240,15 @@ INSERT INTO insemina(n_colegiado,n_crotal,Lote,Fecha)
 ---------------------------pare----------------------------------
 -----------------------------------------------------------------  
 INSERT INTO pare(n_crotal_hijo,n_crotal_madre,incidencias)
+       VALUES ('0101','0010','ninguna');
+INSERT INTO pare(n_crotal_hijo,n_crotal_madre,incidencias)
        VALUES ('0004','0010','ninguna');
 INSERT INTO pare(n_crotal_hijo,n_crotal_madre,incidencias)
-       VALUES ('0004','0011','ninguna');
+       VALUES ('0100','0005','ninguna');
 INSERT INTO pare(n_crotal_hijo,n_crotal_madre,incidencias)
-       VALUES ('0007','0008','ninguna');
+       VALUES ('0007','0005','ninguna');
 INSERT INTO pare(n_crotal_hijo,n_crotal_madre,incidencias)
-       VALUES ('0007','0101','ninguna');
-INSERT INTO pare(n_crotal_hijo,n_crotal_madre,incidencias)
-       VALUES ('0010','0100','ninguna');
+       VALUES ('0006','0010','ninguna');
 
 -----------------------------------------------------------------
 ---------------------------posee----------------------------------
